@@ -1,15 +1,16 @@
 const SignUpSchema = require('../models/SignUp.model')
 
 exports.SignUp = (req, res) => {
-    new SignUpSchema({
+    let SignUpDetails = {
         Name: req.body.Name,
         Email: req.body.Email,
         Password: req.body.Password,
-    }).save()
+    }
+    new SignUpSchema(SignUpDetails).save()
         .then(signUp => {
             res.status(200).json({
                 message: "SignUp Successfully!",
-                SignUpDetails: signUp
+                RegistrationDetails: signUp
             })
         })
         .catch(err => {

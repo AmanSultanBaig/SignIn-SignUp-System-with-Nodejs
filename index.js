@@ -3,6 +3,10 @@ const app = express();
 require('dotenv').config({ path: './config/.env' })
 require('./config/db.config')
 
+
+app.use(express.json())
+app.use(require('./routes/routes'))
+
 // middleware trigger when such endpoint not found
 app.use((req, res, next) => {
     const error = new Error("Endpoint not Found");
@@ -16,10 +20,6 @@ app.use((error, req, res, next) => {
         message: error.message
     })
 })
-
-app.use(express.json())
-app.use('/', require('./routes/routes'))
-
 
 let portNo = process.env.PORT
 
