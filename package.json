@@ -19,7 +19,8 @@
   "homepage": "https://github.com/AmanSultanBaig/SignIn-SignUp-System-with-Nodejs#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.10.11"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
