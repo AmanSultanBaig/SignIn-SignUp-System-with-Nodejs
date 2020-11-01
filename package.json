@@ -1,0 +1,27 @@
+{
+  "name": "signin-signup-system-with-nodejs",
+  "version": "1.0.0",
+  "description": "Sign/Signup System RestApis built with nodejs ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmanSultanBaig/SignIn-SignUp-System-with-Nodejs.git"
+  },
+  "author": "Aman Sultan Baig",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AmanSultanBaig/SignIn-SignUp-System-with-Nodejs/issues"
+  },
+  "homepage": "https://github.com/AmanSultanBaig/SignIn-SignUp-System-with-Nodejs#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
