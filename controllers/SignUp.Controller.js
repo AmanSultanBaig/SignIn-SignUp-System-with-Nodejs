@@ -2,7 +2,7 @@ const SignUpSchema = require('../models/SignUp.model')
 const bcrypt = require('bcrypt')
 
 let saltRounds = 10;
-// sign up controller logic
+// sign up logic
 exports.SignUp = (req, res) => {
     let SignUpDetails = {
         Name: req.body.Name,
@@ -16,6 +16,7 @@ exports.SignUp = (req, res) => {
                 message: "Email Already Exists"
             })
         } else {
+            // Store hash in your password DB.
             bcrypt.hash(req.body.Password, saltRounds, function (err, hash) {
                 if (err) {
                     res.status(404).json({
@@ -30,11 +31,10 @@ exports.SignUp = (req, res) => {
                         Password: hash,
                     }).save()
                         .then(signUp => {
-                            // Store hash in your password DB.
                             res.status(200).json({
                                 status: "success",
                                 message: "SignUp Successfully!",
-                                RegistrationDetails: signUp
+                                data: signUp
                             })
                         })
                         .catch(err => {
@@ -50,6 +50,34 @@ exports.SignUp = (req, res) => {
         res.status(404).json({
             status: "failed",
             message: e.message
+        })
+    })
+}
+
+// login logic
+exports.login = (req, res) => {
+    SignUpSchema.findOne({ Email: req.body.Email }).then(login => {
+        if(login) {
+            // compare hashed password 
+            bcrypt.compare(req.body.Password, login.Password).then(passwordMatched => {
+                if(passwordMatched){
+                    res.status(200).json({
+                        status: "success",
+                        message: "Login Successfully!",
+                        data: login
+                    })
+                }else {
+                    res.status(400).json({
+                        status: "failed",
+                        message: "Invalid Password",
+                    })
+                }
+            })
+        }
+    }).catch(err => {
+        res.status(400).json({
+            status: "failed",
+            message: err.message,
         })
     })
 }
