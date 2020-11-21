@@ -1,8 +1,8 @@
 const SignUpSchema = require('../models/SignUp.model')
 const bcrypt = require('bcrypt')
 const jwt  = require('jsonwebtoken')
-require('dotenv').config({path: '../config/.env'})
 
+require('dotenv').config({path: '../config/.env'})
 
 let saltRounds = 10;
 // sign up logic
