@@ -3,7 +3,6 @@ const app = express();
 require('dotenv').config({ path: './config/.env' })
 require('./config/db.config')
 
-
 app.use(express.json())
 app.use(require('./routes/routes'))
 
@@ -21,6 +20,6 @@ app.use((error, req, res, next) => {
     })
 })
 
-let portNo = process.env.PORT
+let portNo = process.env.PORT || 3000
 
 app.listen(portNo, __ => console.log(`Server is Running on Port ${portNo}! `))
